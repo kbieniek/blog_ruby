@@ -1,6 +1,6 @@
 <h1>User#login</h1>
-<% if @flash[:message] %><div><%= @flash[:message] %></div><% end %>
-<% if @flash[:error] %><div><%= @flash[:error] %></div><% end %>
+<% if flash[:message] %><div><%= flash[:message] %></div><% end %>
+<% if flash[:error] %><div><%= flash[:error] %></div><% end %>
 
 <%= form_tag :action => 'process_login' %>
 
@@ -8,4 +8,4 @@ Username: <%= text_field "user", "username" %>&#x00A;
 Password: <%= password_field "user", "password" %>&#x00A;
 <%= submit_tag %>
 
-<%= end_form_tag %>
+<%= link_to 'View posts' %>

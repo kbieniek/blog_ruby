@@ -1,4 +1,6 @@
 class UserController < ApplicationController
+  before_filter :login_required, :except => :my_account
+
   def login
     @user = User.new
     @user.username = params[:username]
@@ -7,10 +9,10 @@ class UserController < ApplicationController
   def process_login
     if user = User.authenticate(params[:user])
       session[:id] = user.id # Remember the user's id during this session
-      redirect_to session[:return_to] || '/'
+      redirect_to session[:return_to] || '/home/index'
     else
       flash[:error] = 'Invalid login.'
-      redirect_to :action => 'login', :username => params[[:user][:username]]
+      redirect_to '/user/login'#:action => 'login', :username => params[[:user][:username]]
     end
   end
 

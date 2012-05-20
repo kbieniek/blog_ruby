@@ -1,13 +1,10 @@
 class PostsController < ApplicationController
 
-  http_basic_authenticate_with :name => "Bieniu", :password => "OpenUp4Me", :except => [:index, :show]
-
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -18,7 +15,6 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }
@@ -29,7 +25,6 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }
@@ -44,8 +39,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
 
+    @post = Post.new(params[:post])
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -83,5 +78,9 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url }
       format.json { head :no_content }
     end
+  end
+
+  def my_account
+    
   end
 end
